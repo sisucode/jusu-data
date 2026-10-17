@@ -2,28 +2,54 @@
 
 import { useEffect, useState } from "react";
 
-export function useCountdown(targetIso: string) {
-  const [remaining, setRemaining] = useState(() => calc(targetIso));
+type CountdownState = {
+  minutes: number;
+  seconds: number;
+  totalMs: number;
+  expired: boolean;
+};
 
-  useEffect(() => {
-    const id = setInterval(() => setRemaining(calc(targetIso)), 1000);
-    return () => clearInterval(id);
-  }, [targetIso]);
+function calc(iso?: string): CountdownState {
+  if (!iso) {
+    return { minutes: 0, seconds: 0, totalMs: 0, expired: true };
+  }
 
-  return remaining;
-}
+  const target = new Date(iso).getTime();
 
-function calc(iso: string) {
-  const diff = new Date(iso).getTime() - Date.now();
-  if (diff <= 0) return { minutes: 0, seconds: 0, totalMs: 0, expired: true };
+  if (Number.isNaN(target)) {
+    return { minutes: 0, seconds: 0, totalMs: 0, expired: true };
+  }
+
+  const diff = target - Date.now();
+
+  if (diff <= 0) {
+    return { minutes: 0, seconds: 0, totalMs: 0, expired: true };
+  }
 
   const totalSec = Math.floor(diff / 1000);
+
   return {
     minutes: Math.floor(totalSec / 60),
     seconds: totalSec % 60,
     totalMs: diff,
     expired: false,
   };
+}
+
+export function useCountdown(targetIso?: string) {
+  const [remaining, setRemaining] = useState<CountdownState>(() => calc(targetIso));
+
+  useEffect(() => {
+    setRemaining(calc(targetIso));
+
+    const id = setInterval(() => {
+      setRemaining(calc(targetIso));
+    }, 1000);
+
+    return () => clearInterval(id);
+  }, [targetIso]);
+
+  return remaining;
 }
 
 export function formatTMinus(m: number, s: number) {
