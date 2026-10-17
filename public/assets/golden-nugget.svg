@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="nuggetGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="aura">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Soft neon green aura -->
+  <ellipse cx="32" cy="34" rx="26" ry="20" fill="#a3e635" opacity="0.25" filter="url(#aura)"/>
+  <!-- Nugget body -->
+  <path d="M18 28 C14 22 20 14 30 16 C38 12 48 16 50 26 C54 32 50 44 40 46 C30 50 16 44 18 28 Z"
+        fill="url(#nuggetGold)" stroke="#fde047" stroke-width="1.5" filter="url(#aura)"/>
+  <!-- Highlight facet -->
+  <path d="M24 24 C28 20 36 20 40 24" stroke="#fef9c3" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+</svg>

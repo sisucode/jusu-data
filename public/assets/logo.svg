@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="60" cy="60" r="52" stroke="url(#gold)" stroke-width="3" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="44" stroke="#1e293b" stroke-width="2"/>
+  <!-- Stylized JD mark -->
+  <text x="60" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="36" fill="url(#gold)" filter="url(#glow)">JD</text>
+  <!-- Micro accent dots -->
+  <circle cx="60" cy="18" r="2.5" fill="#a3e635"/>
+  <circle cx="102" cy="60" r="2.5" fill="#fbbf24"/>
+  <circle cx="60" cy="102" r="2.5" fill="#a3e635"/>
+  <circle cx="18" cy="60" r="2.5" fill="#fbbf24"/>
+</svg>
