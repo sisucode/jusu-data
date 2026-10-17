@@ -9,6 +9,13 @@ type CountdownState = {
   expired: boolean;
 };
 
+const INITIAL_STATE: CountdownState = {
+  minutes: 0,
+  seconds: 0,
+  totalMs: 0,
+  expired: false,
+};
+
 function calc(iso?: string): CountdownState {
   if (!iso) {
     return { minutes: 0, seconds: 0, totalMs: 0, expired: true };
@@ -37,7 +44,7 @@ function calc(iso?: string): CountdownState {
 }
 
 export function useCountdown(targetIso?: string) {
-  const [remaining, setRemaining] = useState<CountdownState>(() => calc(targetIso));
+  const [remaining, setRemaining] = useState<CountdownState>(INITIAL_STATE);
 
   useEffect(() => {
     setRemaining(calc(targetIso));
