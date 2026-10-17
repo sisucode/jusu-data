@@ -127,11 +127,11 @@ export default function V85LegMatrix({ legs }: Props) {
         </span>
         <span className="flex items-center gap-1.5">
           <span className="h-2.5 w-2.5 rounded-sm bg-rose-900/60 border border-rose-700" />
-          Overbet < 0.90
+          Overbet {"<"} 0.90
         </span>
         <span className="flex items-center gap-1.5">
           <span className="h-2.5 w-2.5 rounded-sm bg-slate-700 opacity-40" />
-          Noise filter < 5%
+          Noise filter {"<"} 5%
         </span>
         <span className="ml-auto font-mono text-slate-500">
           Toggle Speed / Train → instant recalc
